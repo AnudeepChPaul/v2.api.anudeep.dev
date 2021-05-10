@@ -1,0 +1,22 @@
+input LoginCredentialsInput {
+    username: String!
+    password: String!
+}
+
+input SignupUserInput {
+    name: String!
+    username: String!
+    email: String!
+    password: String!
+}
+
+type LoggedInUser {
+    loggedIn: Boolean!
+    authToken: String
+    user: User
+}
+
+extend type Mutation {
+    Login(credentials: LoginCredentialsInput!): LoggedInUser
+    Signup(user: SignupUserInput!): LoggedInUser
+}

@@ -1,0 +1,17 @@
+type DB {
+    name: String
+    isConnected: String
+}
+
+type ApplicationData {
+    name: String
+    version: String
+    repo: String
+    author: String
+    license: String
+    db: DB
+}
+
+extend type Query {
+    About: ApplicationData
+}

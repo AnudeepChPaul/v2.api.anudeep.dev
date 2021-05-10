@@ -1,0 +1,22 @@
+type User {
+    _id: String!
+    name: String!
+    username: String!
+    age: Int
+    loggedIn: Boolean
+    authToken: String
+}
+
+input UserInput {
+    name: String
+    loggedIn: Boolean
+}
+
+type Query {
+    Users(username: [String!], userInfo: UserInput ): [User]
+}
+
+type Mutation {
+    AddUser (User: UserInput): User
+    UpdateUser(id: String!, User: UserInput): User
+}
