@@ -1,3 +1,8 @@
+enum Role {
+    ADMIN
+    USER
+}
+
 input LoginCredentialsInput {
     username: String!
     password: String!
@@ -13,7 +18,14 @@ input SignupUserInput {
 type LoggedInUser {
     loggedIn: Boolean!
     authToken: String
-    user: User
+    user: User,
+    activities: [AuthActivity]
+}
+
+type AuthActivity {
+    type: String!
+    startTime: String!
+    status: String!
 }
 
 extend type Mutation {

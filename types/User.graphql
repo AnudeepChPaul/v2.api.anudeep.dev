@@ -4,12 +4,12 @@ type User {
     username: String!
     age: Int
     loggedIn: Boolean
-    authToken: String
 }
 
 input UserInput {
     name: String
     loggedIn: Boolean
+    age: Int
 }
 
 type Query {
@@ -17,6 +17,5 @@ type Query {
 }
 
 type Mutation {
-    AddUser (User: UserInput): User
     UpdateUser(id: String!, User: UserInput): User
 }

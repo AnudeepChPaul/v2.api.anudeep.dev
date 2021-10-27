@@ -1,4 +1,4 @@
-import { login, signup } from '../../authentication/Authentication'
+import { login, signup } from '../authentication/Authentication'
 
 export const resolvers = {
   Mutation: {

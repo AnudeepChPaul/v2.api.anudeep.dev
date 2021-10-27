@@ -1,0 +1,13 @@
+[{
+  "name": "users",
+  "index": {
+    "name": "username",
+    "unique": 1
+  }
+}, {
+  "name": "hashtable",
+  "index": {
+    "name": "username",
+    "unique": 1
+  }
+}]

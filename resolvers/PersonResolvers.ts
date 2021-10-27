@@ -1,8 +1,9 @@
-import { DBServer } from '../../DBServer'
+import { DBServer } from '../DBServer'
+import { ExpressContext } from 'apollo-server-express'
 
 export const resolvers = {
   Query: {
-    Users: async (parent: never, { username, userInfo }: {username: string[], userInfo: any}, ctx: never): Promise<any> => {
+    Users: async (parent: never, { username, userInfo }: {username: string[], userInfo: any}, context): Promise<any> => {
       let query = {}
       if (username) {
         query = { username: { '$in': username } }
@@ -21,13 +22,7 @@ export const resolvers = {
     }
   }
   , Mutation: {
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    AddUser: async (context, { User }): Promise<any> => {
-      const res = await DBServer.getCollection('users').insertOne(User)
-      return (await DBServer.getCollection('users').find({ _id: res.insertedId }).toArray())[0]
-    }
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    , UpdateUser: async (context, { username, User }) => {
+    UpdateUser: async (parent: never, { username, User }: {username: string, User: any}): Promise<any> => {
       await DBServer.getCollection('users').updateOne({ username: username }, { '$set': User })
       return (await DBServer.getCollection('users').find({ username: username }).toArray())[0]
     }

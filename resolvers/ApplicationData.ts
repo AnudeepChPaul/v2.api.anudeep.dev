@@ -1,10 +1,19 @@
-import { DBServer } from '../../DBServer'
-import { ObjectId } from 'mongodb'
+import { DBServer } from '../DBServer'
 import fs from 'fs'
 
 export const resolvers = {
   Query: {
-    About() {
+    About(parent: never, args: never, context: any): any {
+      if (!context.isAuthenticated) {
+        return {
+          name: null
+          , version: null
+          , repo: null
+          , author: null
+          , license: null
+        }
+      }
+
       const data = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
       return {
         name: data.name
@@ -16,18 +25,11 @@ export const resolvers = {
     }
   }
   , ApplicationData: {
-    db: () => {
+    db: (parent: never, args: never, context: { user, isAuthenticated }) : { name: string, isConnected: boolean } => {
+      if (!context.isAuthenticated) {
+        return null
+      }
       return DBServer.getDBInfo()
-    }
-  }
-  , Mutation: {
-    AddUser: async (parent, { User }) => {
-      const res = await DBServer.getCollection('users').insertOne(User)
-      return (await DBServer.getCollection('users').find({ _id: res.insertedId }).toArray())[0]
-    }
-    , UpdateUser: async (parent, { id, User }) => {
-      await DBServer.getCollection('users').updateOne({ _id: new ObjectId(id) }, { '$set': User })
-      return (await DBServer.getCollection('users').find(new ObjectId(id)).toArray())[0]
     }
   }
 }

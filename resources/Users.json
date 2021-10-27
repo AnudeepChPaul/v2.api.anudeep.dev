@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Anudeep",
+    "username": "acpaul",
+    "email": "anudeepch.paul@gmail.com",
+    "loggedIn": true,
+    "age": 27,
+    "modifiedOn": "2021-02-27T12:55:48.569Z",
+    "createdOn": "2021-02-27T12:50:34.554Z"
+  },
+  {
+    "name": "Shreya Paul",
+    "age": 28,
+    "username": "shreya",
+    "modifiedOn": "2021-02-27T12:55:48.569Z",
+    "createdOn": "2021-02-27T12:50:34.554Z"
+  },
+  {
+    "name": "Jhuma Paul",
+    "age": 46,
+    "username": "jhuma",
+    "modifiedOn": "2021-02-27T12:55:48.569Z",
+    "createdOn": "2021-02-27T12:50:34.554Z"
+  },
+  {
+    "name": "Tapan Chandra Paul",
+    "age": 58,
+    "username": "tapan",
+    "modifiedOn": "2021-02-27T12:55:48.569Z",
+    "createdOn": "2021-02-27T12:50:34.554Z"
+  }
+]
